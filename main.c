@@ -23,12 +23,12 @@ void assign(int* board, int c){
 
 
 int* checker(int* board, int x, int y){
-    int rock[] = {1,2,3,4,5,6,7,8,9};
-    int* arr = malloc(sizeof(int)*9);
-    SDL_memmove(arr, &rock[0], sizeof(int)*9);
+	int rock[] = {1,2,3,4,5,6,7,8,9};
+	int* arr = malloc(sizeof(int)*9);
+	SDL_memmove(arr, &rock[0], sizeof(int)*9);
     for(int i=0;i<9;i++){
-        //for horizontal!
-        if(board[x+i*9]!=0) arr[board[x+i*9]-1] = 0;
+    	//for horizontal!
+       	if(board[x+i*9]!=0) arr[board[x+i*9]-1] = 0;
         //for vertical!!
         if(board[i+y*9]!=0) arr[board[i+y*9]-1] = 0;
     }
@@ -40,9 +40,7 @@ int* checker(int* board, int x, int y){
 			int index = (j+i*9);
 			if(board[index]!=0) arr[board[index]-1] = 0;
 		}
-		//printf("\n");
 	}
-	//printf("\n--------------------\n");
     return arr;
 }
 
