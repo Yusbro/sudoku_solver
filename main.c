@@ -15,7 +15,7 @@ void update(int* board);
 void assign(int* board, int c);
 
 void assign(int* board, int c){
-	int mx,my;
+int mx,my;
 	SDL_GetMouseState(&mx,&my);
 	if(c==1)board[(mx/64)+(my/64)*9] += 1;
 	if(c==2)board[(mx/64)+(my/64)*9] -= 1;
@@ -26,12 +26,12 @@ int* checker(int* board, int x, int y){
 	int rock[] = {1,2,3,4,5,6,7,8,9};
 	int* arr = malloc(sizeof(int)*9);
 	SDL_memmove(arr, &rock[0], sizeof(int)*9);
-    for(int i=0;i<9;i++){
-    	//for horizontal!
-       	if(board[x+i*9]!=0) arr[board[x+i*9]-1] = 0;
-        //for vertical!!
-        if(board[i+y*9]!=0) arr[board[i+y*9]-1] = 0;
-    }
+	for(int i=0;i<9;i++){
+		//for horizontal!
+		if(board[x+i*9]!=0) arr[board[x+i*9]-1] = 0;
+		//for vertical!!
+		if(board[i+y*9]!=0) arr[board[i+y*9]-1] = 0;
+	}
 
 	int bx = (x/3)*3;
 	int by = (y/3)*3;
