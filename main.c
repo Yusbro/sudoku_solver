@@ -15,7 +15,7 @@ void update(int* board);
 void assign(int* board, int c);
 
 void assign(int* board, int c){
-int mx,my;
+	int mx,my;
 	SDL_GetMouseState(&mx,&my);
 	if(c==1)board[(mx/64)+(my/64)*9] += 1;
 	if(c==2)board[(mx/64)+(my/64)*9] -= 1;
@@ -139,27 +139,27 @@ int main(int argc, char** argv){
                     running = 0;
                     break;
 				
-				case SDL_MOUSEBUTTONDOWN:
-					if(mouse_press == 0){
-						if(event.button.button == SDL_BUTTON_LEFT)	assign(&board[0],1);
-						if(event.button.button == SDL_BUTTON_RIGHT) assign(&board[0],2);
-						mouse_press = 1;
-					}
-					break;
-				case SDL_MOUSEBUTTONUP:
-					mouse_press = 0;
-					break;
+		case SDL_MOUSEBUTTONDOWN:
+			if(mouse_press == 0){
+				if(event.button.button == SDL_BUTTON_LEFT)	assign(&board[0],1);
+				if(event.button.button == SDL_BUTTON_RIGHT) assign(&board[0],2);
+				mouse_press = 1;
+			}
+			break;
+		case SDL_MOUSEBUTTONUP:
+			mouse_press = 0;
+			break;
 
-				//for updating the board stuff!!.
-				case SDL_KEYDOWN:
-					if(SDLK_a == event.key.keysym.sym && is_press == 0){
-						update(&board[0]);
-						is_press = 1;
-					}
-					break;
-				case SDL_KEYUP:
-						is_press = 0;
-					break;
+		//for updating the board stuff!!.
+		case SDL_KEYDOWN:
+			if(SDLK_a == event.key.keysym.sym && is_press == 0){
+				update(&board[0]);
+				is_press = 1;
+			}
+			break;
+		case SDL_KEYUP:
+			is_press = 0;
+			break;
                 default:
                     break;
             }
@@ -169,13 +169,14 @@ int main(int argc, char** argv){
         SDL_RenderClear(renderer);
         //drawing all da stuff!!
         for(int i=0;i<81; i++){
-            int x = i%9;
-            int y = i/9;
-            dstrect.x = x*64;
-            dstrect.y = y*64;
-            SDL_RenderCopy(renderer, lettuce_tex[board[i]], &srcrect, &dstrect);
-        }
-        SDL_RenderPresent(renderer);
+		int x = i%9;
+		int y = i/9;
+		dstrect.x = x*64;
+		dstrect.y = y*64;
+		SDL_RenderCopy(renderer, lettuce_tex[board[i]], &srcrect, &dstrect);
+	}
+	SDL_RenderPresent(renderer);
+	
     }
     return 0;
 }
